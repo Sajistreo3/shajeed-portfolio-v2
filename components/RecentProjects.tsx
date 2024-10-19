@@ -1,9 +1,10 @@
 "use client";
 
 import { FaLocationArrow } from "react-icons/fa6";
-
+import { Icon } from "@iconify/react";
 import { projects } from "@/data";
-import { PinContainer } from "./ui/Pin"
+import { PinContainer } from "./ui/Pin";
+import Link from "next/link";
 
 const RecentProjects = () => {
   return (
@@ -19,20 +20,24 @@ const RecentProjects = () => {
             key={item.id}
           >
             <PinContainer
-              title="/ui.aceternity.com"
-              href="https://twitter.com/mannupaaji"
+              title={item.link}
+              href={item.link}
             >
               <div className="relative flex items-center justify-center sm:w-[570px] w-[80vw] overflow-hidden sm:h-[23rem] h-[20rem] mb-10">
                 <div
                   className="relative w-full h-full overflow-hidden lg:rounded-3xl"
                   style={{ backgroundColor: "#13162D" }}
                 >
+                  {/* Background image */}
                   <img src="/bg.png" alt="bgimg" />
                 </div>
+
+                {/* Main web image with tilt, scaling, and rounded corners */}
                 <img
                   src={item.img}
                   alt="cover"
-                  className="z-10 absolute bottom-0"
+                  className="z-10 absolute bottom-0 transform rotate-[5deg] scale-95 rounded-3xl shadow-lg" // Tilted, smaller, rounded corners
+                  style={{ maxWidth: "90%", borderRadius: "1.5rem" }} // Ensures rounding is more prominent
                 />
               </div>
 
@@ -55,20 +60,27 @@ const RecentProjects = () => {
                   {item.iconLists.map((icon, index) => (
                     <div
                       key={index}
-                      className="border border-white/[.2] rounded-full bg-black lg:w-10 lg:h-10 w-8 h-8 flex justify-center items-center"
+                      className="border border-white/[.2] rounded-full bg-black-100 lg:w-10 lg:h-10 w-8 h-8 flex justify-center items-center"
                       style={{
                         transform: `translateX(-${5 * index + 2}px)`,
                       }}
                     >
-                      <img src={icon} alt="icon5" className="p-2" />
+                      <Icon
+                        icon={icon}
+                        className="p-2"
+                        width={37}
+                        height={37}
+                      />
                     </div>
                   ))}
                 </div>
 
                 <div className="flex justify-center items-center">
-                  <p className="flex lg:text-xl md:text-xs text-sm text-purple">
-                    Check Live Site
-                  </p>
+                  <Link target="_blank" href={item.link}>
+                    <p className="flex lg:text-xl md:text-xs text-sm text-purple cursor-pointer">
+                      Check Live Site
+                    </p>
+                  </Link>
                   <FaLocationArrow className="ms-3" color="#CBACF9" />
                 </div>
               </div>

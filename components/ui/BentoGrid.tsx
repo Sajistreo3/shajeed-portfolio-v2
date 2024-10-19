@@ -30,6 +30,8 @@ import {
   SiMysql,
   SiFirebase,
   SiTailwindcss,
+  SiMongodb,
+  SiPython,
 } from "react-icons/si";
 import { TbBrandCSharp } from "react-icons/tb";
 
@@ -74,27 +76,37 @@ export const BentoGridItem = ({
   spareImg?: string;
 }) => {
   const leftLists = [
-    { id: 1, name: "ReactJS", designation: "2 years", icon: <FaReact /> },
-    { id: 2, name: "Typescript", designation: "1.5 years", icon: <SiTypescript /> },
-    { id: 3, name: "JavaScript", designation: "3 years", icon: <FaJs /> },
-    { id: 4, name: "Firebase", designation: "1 year", icon: <SiFirebase /> },
+    { id: 1, name: "ReactJS", designation: "4 years", icon: <FaReact /> },
+    {
+      id: 2,
+      name: "Typescript",
+      designation: "1.5 years",
+      icon: <SiTypescript />,
+    },
+    { id: 3, name: "JavaScript", designation: "5 years", icon: <FaJs /> },
+    { id: 4, name: "Firebase", designation: "2 year", icon: <SiFirebase /> },
     { id: 5, name: "PHP", designation: "4 years", icon: <FaPhp /> },
   ];
-  
+
   const middleLists = [
-    { id: 6, name: "Express", designation: "2.5 years", icon: <SiExpress /> },
+    { id: 6, name: "Python", designation: "2.5 years", icon: <SiPython /> },
     { id: 7, name: "NextJS", designation: "1 year", icon: <SiNextdotjs /> },
-    { id: 8, name: "NodeJS", designation: "2.5 years", icon: <FaNodeJs /> },
-    { id: 9, name: "TailwindCSS", designation: "1 year", icon: <SiTailwindcss /> },
-    { id: 10, name: "Git", designation: "3 years", icon: <FaGit /> },
+    { id: 8, name: "NodeJS", designation: "3 years", icon: <FaNodeJs /> },
+    {
+      id: 9,
+      name: "TailwindCSS",
+      designation: "1 year",
+      icon: <SiTailwindcss />,
+    },
+    { id: 10, name: "Git", designation: "4 years", icon: <FaGit /> },
   ];
-  
+
   const rightLists = [
     { id: 11, name: "Java", designation: "3 years", icon: <FaJava /> },
     { id: 12, name: "HTML", designation: "4 years", icon: <FaHtml5 /> },
     { id: 13, name: "CSS", designation: "4 years", icon: <FaCss3Alt /> },
     { id: 14, name: "MySQL", designation: "2 years", icon: <SiMysql /> },
-    { id: 15, name: "Docker", designation: "1 year", icon: <FaDocker /> },
+    { id: 15, name: "MongoDB", designation: "1 year", icon: <SiMongodb /> },
   ];
   const [copied, setCopied] = useState(false);
 
@@ -170,50 +182,20 @@ export const BentoGridItem = ({
           </div>
           {id === 2 && <GridGlobe />}
           {id === 3 && (
-            <div className="flex gap-1 lg:gap-5 w-fit absolute -right-3 lg:-right-2">
-              {/* tech stack lists */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 mt-6 pb-6 justify-center">
-                {/* First Column */}
-                <div className="flex flex-col gap-6 justify-center">
-                  {leftLists.map((item, i) => (
+            <div className="flex justify-center w-full relative">
+              {/* Tech stack lists */}
+              <div className="grid grid-cols-5 gap-2 lg:gap-6 mt-6 pb-6 justify-items-center">
+                {/* Combine leftLists, middleLists, and rightLists into one */}
+                {[...leftLists, ...middleLists, ...rightLists].map(
+                  (item, i) => (
                     <span
                       key={i}
-                      className={`py-2 px-3 w-14 h-14 text-2xl rounded-lg text-center bg-[#10132E] flex items-center justify-center ${
-                        i % 2 === 0 ? "ml-4" : ""
-                      }`}
+                      className="py-1 px-2 w-14 h-14 text-2xl rounded-lg text-center bg-[#10132E] flex items-center justify-center"
                     >
                       {item.icon}
                     </span>
-                  ))}
-                </div>
-
-                {/* Second Column */}
-                <div className="flex flex-col gap-6 justify-center">
-                  {middleLists.map((item, i) => (
-                    <span
-                      key={i}
-                      className={`py-2 px-3 w-14 h-14 text-2xl rounded-lg text-center bg-[#10132E] flex items-center justify-center ${
-                        i % 2 === 0 ? "ml-4" : ""
-                      }`}
-                    >
-                      {item.icon}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Third Column */}
-                <div className="flex flex-col gap-6 justify-center">
-                  {rightLists.map((item, i) => (
-                    <span
-                      key={i}
-                      className={`py-2 px-3 w-14 h-14 text-2xl rounded-lg text-center bg-[#10132E] flex items-center justify-center ${
-                        i % 2 === 0 ? "ml-4" : ""
-                      }`}
-                    >
-                      {item.icon}
-                    </span>
-                  ))}
-                </div>
+                  )
+                )}
               </div>
             </div>
           )}
