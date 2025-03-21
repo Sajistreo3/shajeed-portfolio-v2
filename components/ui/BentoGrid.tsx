@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { BackgroundGradientAnimation } from "./BackgroundGradientAnimation";
 import GridGlobe from "./GridGlobe";
-import Lottie from "react-lottie";
+import dynamic from "next/dynamic";
 import animationData from "@/data/confetti.json";
 import MagicBorderBtn from "./MagicBorderBtn";
 import { MdContentCopy } from "react-icons/md";
@@ -30,6 +30,12 @@ import {
   SiMongodb,
   SiPython,
 } from "react-icons/si";
+
+// Dynamically import Lottie with SSR disabled
+const Lottie = dynamic(() => import("react-lottie"), {
+  ssr: false,
+  loading: () => <div style={{ width: 400, height: 200 }} />,
+});
 
 export const BentoGrid = ({
   className,
@@ -102,7 +108,12 @@ export const BentoGridItem = ({
     { id: 14, name: "MySQL", designation: "2 years", icon: <SiMysql /> },
     { id: 15, name: "MongoDB", designation: "1 year", icon: <SiMongodb /> },
   ];
+  const [isMounted, setIsMounted] = useState(false);
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const defaultOptions = {
     loop: copied,
@@ -196,7 +207,9 @@ export const BentoGridItem = ({
                   copied ? "block" : "block"
                 }`}
               >
-                <Lottie options={defaultOptions} height={200} width={400} />
+                {isMounted && copied && (
+                  <Lottie options={defaultOptions} height={200} width={400} />
+                )}
               </div>
               <MagicBorderBtn
                 title={copied ? "Email is Copied!" : "Copy my email address"}
