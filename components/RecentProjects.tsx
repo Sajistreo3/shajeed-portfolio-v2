@@ -5,6 +5,7 @@ import { Icon } from "@iconify/react";
 import { projects } from "@/data";
 import { PinContainer } from "./ui/Pin";
 import Link from "next/link";
+import Image from "next/image";
 
 const RecentProjects = () => {
   return (
@@ -19,25 +20,31 @@ const RecentProjects = () => {
             className="sm:h-[41rem] h-[32rem] lg:min-h-[32.5rem] flex items-center justify-center sm:w-[570px] w-[80vw]"
             key={item.id}
           >
-            <PinContainer
-              title={item.link}
-              href={item.link}
-            >
+            <PinContainer title={item.link} href={item.link}>
               <div className="relative flex items-center justify-center sm:w-[570px] w-[80vw] overflow-hidden sm:h-[23rem] h-[20rem] mb-10">
                 <div
                   className="relative w-full h-full overflow-hidden lg:rounded-3xl"
                   style={{ backgroundColor: "#13162D" }}
                 >
                   {/* Background image */}
-                  <img src="/bg.png" alt="bgimg" />
+                  <Image
+                    src="/bg.png"
+                    alt="bgimg"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
                 </div>
 
                 {/* Main web image with tilt, scaling, and rounded corners */}
-                <img
+                <Image
                   src={item.img}
                   alt="cover"
-                  className="z-10 absolute bottom-0 transform rotate-[5deg] scale-95 rounded-3xl shadow-lg" // Tilted, smaller, rounded corners
-                  style={{ maxWidth: "90%", borderRadius: "1.5rem" }} // Ensures rounding is more prominent
+                  width={800}
+                  height={450}
+                  className="z-10 absolute bottom-0 transform rotate-[5deg] scale-95 rounded-3xl shadow-lg"
+                  style={{ maxWidth: "90%", borderRadius: "1.5rem" }}
+                  priority
                 />
               </div>
 

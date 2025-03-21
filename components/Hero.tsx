@@ -2,7 +2,7 @@ import React from "react";
 import { Spotlight } from "./ui/Spotlight";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 import MagicBorderBtn from "./ui/MagicBorderBtn";
-import { FaArrowDown, FaLocationArrow } from "react-icons/fa";
+import { FaArrowDown } from "react-icons/fa";
 
 const Hero = () => {
   return (

@@ -2,34 +2,33 @@ import Grid from "@/components/Grid";
 import Hero from "@/components/Hero";
 import RecentProjects from "@/components/RecentProjects";
 import { FloatingNav } from "@/components/ui/FloatingNav";
-import Image from "next/image";
-import { FaHome } from "react-icons/fa";
+// import Image from "next/image";
+// import { FaHome } from "react-icons/fa";
 // import { navItems } from "@/data";
 // import Clients from "@/components/Clients";
 import Experience from "@/components/Experience";
 import Approach from "@/components/Approach";
 import Footer from "@/components/Footer";
-import { FaUser, FaProjectDiagram, FaCommentDots, FaEnvelope } from "react-icons/fa"; 
-
+import {
+  FaUser,
+  FaProjectDiagram,
+  FaCommentDots,
+  FaEnvelope,
+} from "react-icons/fa";
 
 export default function Home() {
-
-
-const navItems = [
-  { name: "About", link: "#about", icon: <FaUser /> },           // User icon for About
-  { name: "Projects", link: "#projects", icon: <FaProjectDiagram /> }, // Project diagram icon for Projects
-  { name: "Testimonials", link: "#testimonials", icon: <FaCommentDots /> }, // Comment icon for Testimonials
-  { name: "Contact", link: "#contact", icon: <FaEnvelope /> },   // Envelope icon for Contact
-];
-
+  const navItems = [
+    { name: "About", link: "#about", icon: <FaUser /> },
+    { name: "Projects", link: "#projects", icon: <FaProjectDiagram /> },
+    { name: "Testimonials", link: "#testimonials", icon: <FaCommentDots /> },
+    { name: "Contact", link: "#contact", icon: <FaEnvelope /> },
+  ];
 
   return (
     <main className="relative bg-black-100 flex justify-centre items-center flex-col mx-auto sm:px-10 px-5 overflow-clip">
       <div className="max-w-7xl w-full">
         <h1>
-          <FloatingNav
-            navItems={navItems}
-          />
+          <FloatingNav navItems={navItems} />
           <Hero />
           <Grid />
           <RecentProjects />
