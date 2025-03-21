@@ -182,7 +182,7 @@ export const BentoGridItem = ({
           <div className="font-sans font-bold text-lg lg:text-3xl max-w-96 z-10">
             {title}
           </div>
-          {id === 2 && <GridGlobe />}
+          {id === 2 && isMounted && <GridGlobe />}
           {id === 3 && (
             <div className="flex justify-center w-full relative">
               <div className="grid grid-cols-5 gap-2 lg:gap-6 mt-6 pb-6 justify-items-center">

@@ -33,7 +33,7 @@ const Hero = () => {
             words="Transforming Concepts into Seamless User Experiences"
           />
           <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
-            Hi, I&apos;m Shajeed, a Full-Stack Developer based in Canada
+            Hi, I&apos;m Shajeed, a Certified Full-Stack Developer based in Canada
           </p>
 
           <a href="#about">
