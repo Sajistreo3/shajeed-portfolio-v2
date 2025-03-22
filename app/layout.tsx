@@ -16,7 +16,23 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Shajeed | Full Stack Developer",
-  description: "Explore the innovative projects I’ve delivered throughout my development career. Let me help you solve your challenges with custom web, mobile, and digital solutions tailored to your business needs.",
+  description:
+    "Explore the innovative projects I've delivered throughout my development career. Let me help you solve your challenges with custom web, mobile, and digital solutions tailored to your business needs.",
+  metadataBase: new URL("https://www.shajeed.com"),
+  openGraph: {
+    images: [
+      {
+        url: "/b1.svg", // Path relative to the public directory
+        width: 1200,
+        height: 630,
+        alt: "Your site preview image",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/b1.svg"],
+  },
 };
 
 export default function RootLayout({
@@ -30,13 +46,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

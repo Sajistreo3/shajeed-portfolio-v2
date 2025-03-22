@@ -90,6 +90,17 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        download: {
+          "0%": {
+            transform: "translateY(0%)",
+          },
+          "50%": {
+            transform: "translateY(-15%)",
+          },
+          "100%": {
+            transform: "translateY(0%)",
+          },
+        },
         spotlight: {
           "0%": {
             opacity: "0",
@@ -150,6 +161,7 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        download: "download 1s infinite",
         spotlight: "spotlight 2s ease .75s 1 forwards",
         shimmer: "shimmer 2s linear infinite",
         first: "moveVertical 30s ease infinite",

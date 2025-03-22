@@ -10,6 +10,7 @@ import MagicBorderBtn from "./MagicBorderBtn";
 import { MdContentCopy } from "react-icons/md";
 import { TbChecks } from "react-icons/tb";
 import Image from "next/image";
+import AnimatedDownloadButton from "./AnimatedDownloadButton";
 
 import {
   FaReact,
@@ -217,6 +218,19 @@ export const BentoGridItem = ({
                 position="left"
                 handleClick={handleCopy}
                 otherClasses="`bg-[#161a31]`"
+              />
+            </div>
+          )}
+
+          {id === 1 && (
+            <div className="absolute top-6 left-6 z-10">
+              <AnimatedDownloadButton
+                text="Resume"
+                onClick={() => {
+                  // Add your resume download logic here
+                  // For example:
+                  window.open("/2025MarFSDResume.pdf", "_blank");
+                }}
               />
             </div>
           )}
