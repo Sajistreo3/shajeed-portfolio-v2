@@ -239,24 +239,24 @@ export const workExperience = [
   },
   {
     id: 2,
+    title: "Web Developer - Linen Chest",
+    desc: "Developed e-commerce features and resolved JavaScript errors using Noibu, ensuring seamless user experience and preventing revenue loss.",
+    className: "md:col-span-2",
+    thumbnail: "/exp4.svg",
+  },
+  {
+    id: 3,
     title: "Mobile App Developer - Tekmadev (Freelance)",
     desc: "Developed cross-platform mobile applications for both iOS and Android using React Native and Python, improving user engagement and operational efficiency.",
     className: "md:col-span-2", // change to md:col-span-2
     thumbnail: "/exp2.svg",
   },
   {
-    id: 3,
+    id: 4,
     title: "Full Stack Developer - Tekmadev (Freelance)",
     desc: "Led development of an NFT social platform and small business websites, handling both frontend (React.js) and backend (Firebase, PHP) development.",
     className: "md:col-span-2", // change to md:col-span-2
     thumbnail: "/exp3.svg",
-  },
-  {
-    id: 4,
-    title: "Web Developer - Linen Chest",
-    desc: "Developed e-commerce features and resolved JavaScript errors using Noibu, ensuring seamless user experience and preventing revenue loss.",
-    className: "md:col-span-2",
-    thumbnail: "/exp4.svg",
   },
 ];
 
