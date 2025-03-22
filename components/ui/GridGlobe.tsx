@@ -1,26 +1,28 @@
 "use client";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense } from "react";
 import dynamic from "next/dynamic";
+
+const LoadingPlaceholder = () => (
+  <div
+    style={{
+      width: "100%",
+      aspectRatio: "1/1",
+      maxWidth: "600px",
+      margin: "0 auto",
+      background: "transparent",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    }}
+  >
+    <div className="animate-pulse">Loading Globe...</div>
+  </div>
+);
 
 // Dynamically import the World component with no SSR
 const World = dynamic(() => import("./Globe").then((mod) => mod.World), {
   ssr: false,
-  loading: () => (
-    <div
-      style={{
-        width: "100%",
-        aspectRatio: "1/1",
-        maxWidth: "600px",
-        margin: "0 auto",
-        background: "transparent",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      Loading Globe...
-    </div>
-  ),
+  loading: LoadingPlaceholder,
 });
 
 const GridGlobe = () => {
@@ -89,22 +91,7 @@ const GridGlobe = () => {
         background: "transparent",
       }}
     >
-      <Suspense
-        fallback={
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              background: "transparent",
-            }}
-          >
-            Loading...
-          </div>
-        }
-      >
+      <Suspense fallback={<LoadingPlaceholder />}>
         <World globeConfig={globeConfig} data={sampleArcs} />
       </Suspense>
     </div>

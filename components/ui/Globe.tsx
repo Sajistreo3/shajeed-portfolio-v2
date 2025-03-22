@@ -5,7 +5,7 @@ import ThreeGlobe from "three-globe";
 import { Canvas, extend, useThree, Object3DNode } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import countries from "@/data/globe.json";
-import { hexToRgb } from "@/lib/utils";
+import dynamic from "next/dynamic";
 
 // Extend THREE components
 extend({ ThreeGlobe });
@@ -13,6 +13,12 @@ extend({ ThreeGlobe });
 declare module "@react-three/fiber" {
   interface ThreeElements {
     threeGlobe: Object3DNode<ThreeGlobe, typeof ThreeGlobe>;
+  }
+}
+
+declare global {
+  interface Window {
+    __THREE__: any;
   }
 }
 
@@ -62,40 +68,46 @@ interface WorldProps {
 
 function Scene({ globeConfig, data }: WorldProps) {
   const globeRef = useRef<ThreeGlobe | null>(null);
-  const { size } = useThree();
+  const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    if (globeRef.current) {
-      const globe = globeRef.current;
+    if (!isInitialized && globeRef.current) {
+      try {
+        const globe = globeRef.current;
 
-      // Set globe properties
-      globe
-        .hexPolygonsData(countries.features)
-        .hexPolygonResolution(3)
-        .hexPolygonMargin(0.7)
-        .showAtmosphere(true)
-        .atmosphereColor("#ffffff")
-        .atmosphereAltitude(0.1)
-        .hexPolygonColor(() => "rgba(255,255,255,0.7)");
+        // Set globe properties
+        globe
+          .hexPolygonsData(countries.features)
+          .hexPolygonResolution(3)
+          .hexPolygonMargin(0.7)
+          .showAtmosphere(true)
+          .atmosphereColor("#ffffff")
+          .atmosphereAltitude(0.1)
+          .hexPolygonColor(() => "rgba(255,255,255,0.7)");
 
-      // Set globe material
-      const globeMaterial = globe.globeMaterial() as any;
-      globeMaterial.color = new Color(globeConfig.globeColor || "#1d072e");
-      globeMaterial.emissive = new Color(globeConfig.emissive || "#000000");
-      globeMaterial.emissiveIntensity = globeConfig.emissiveIntensity || 0.1;
-      globeMaterial.shininess = globeConfig.shininess || 0.9;
+        // Set globe material
+        const globeMaterial = globe.globeMaterial() as any;
+        globeMaterial.color = new Color(globeConfig.globeColor || "#1d072e");
+        globeMaterial.emissive = new Color(globeConfig.emissive || "#000000");
+        globeMaterial.emissiveIntensity = globeConfig.emissiveIntensity || 0.1;
+        globeMaterial.shininess = globeConfig.shininess || 0.9;
 
-      // Add arcs
-      globe
-        .arcsData(data)
-        .arcColor("color")
-        .arcAltitude("arcAlt")
-        .arcStroke(0.5)
-        .arcDashLength(0.9)
-        .arcDashGap(4)
-        .arcDashAnimateTime(1000);
+        // Add arcs
+        globe
+          .arcsData(data)
+          .arcColor("color")
+          .arcAltitude("arcAlt")
+          .arcStroke(0.5)
+          .arcDashLength(0.9)
+          .arcDashGap(4)
+          .arcDashAnimateTime(1000);
+
+        setIsInitialized(true);
+      } catch (error) {
+        console.error("Error initializing globe:", error);
+      }
     }
-  }, [globeRef.current]);
+  }, [globeRef.current, isInitialized, globeConfig, data]);
 
   return (
     <>
@@ -111,51 +123,65 @@ function Scene({ globeConfig, data }: WorldProps) {
   );
 }
 
+// Create a dynamic Canvas component that only renders on client
+const DynamicCanvas = dynamic(() => Promise.resolve(Canvas), {
+  ssr: false,
+});
+
 export function World(props: WorldProps) {
+  const [mounted, setMounted] = useState(false);
   const [size, setSize] = useState({ width: 300, height: 300 });
 
   useEffect(() => {
+    setMounted(true);
     const updateSize = () => {
       const container = document.getElementById("globe-container");
       if (container) {
         const width = container.offsetWidth;
-        // Keep it square by using the same value for both width and height
         setSize({ width, height: width });
       }
     };
 
     updateSize();
     window.addEventListener("resize", updateSize);
-    return () => window.removeEventListener("resize", updateSize);
+    return () => {
+      window.removeEventListener("resize", updateSize);
+      setMounted(false);
+    };
   }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <div
       id="globe-container"
       style={{
         width: "100%",
-        height: size.height,
+        aspectRatio: "1/1",
         position: "relative",
-        maxWidth: "600px", // Add a max-width to prevent the globe from getting too large
-        margin: "0 auto", // Center the globe
+        maxWidth: "600px",
+        margin: "0 auto",
       }}
     >
-      <Canvas
+      <DynamicCanvas
         camera={{
           position: [0, 0, cameraZ],
           fov: 45,
           near: 1,
           far: 1000,
-          aspect: 1, // Force 1:1 aspect ratio
+          aspect: 1,
         }}
         style={{
           width: "100%",
           height: "100%",
           background: "transparent",
         }}
+        dpr={[1, 2]}
       >
         <Scene {...props} />
-      </Canvas>
+      </DynamicCanvas>
     </div>
   );
 }
