@@ -229,7 +229,7 @@ export const BentoGridItem = ({
                 onClick={() => {
                   // Add your resume download logic here
                   // For example:
-                  window.open("/2025MarFSDResume.pdf", "_blank");
+                  window.open("/2025AprilFSDResume.pdf", "_blank");
                 }}
               />
             </div>
