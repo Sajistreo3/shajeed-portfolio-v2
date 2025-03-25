@@ -14,7 +14,13 @@ import {
   FaProjectDiagram,
   FaCommentDots,
   FaEnvelope,
+  FaFileAlt,
+  FaFileDownload,
+  FaFileContract,
+  FaRegFileAlt,
 } from "react-icons/fa";
+import { HiDocument, HiDocumentDownload } from "react-icons/hi";
+import { BsFileEarmarkText, BsFileEarmarkPerson } from "react-icons/bs";
 
 export default function Home() {
   const navItems = [

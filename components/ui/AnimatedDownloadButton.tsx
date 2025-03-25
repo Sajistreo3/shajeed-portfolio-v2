@@ -1,4 +1,5 @@
 import React from "react";
+import { FaFileDownload } from "react-icons/fa";
 
 interface AnimatedDownloadButtonProps {
   text?: string;
@@ -18,22 +19,7 @@ const AnimatedDownloadButton: React.FC<AnimatedDownloadButtonProps> = ({
     >
       <div className="flex items-center justify-between gap-2.5 min-h-[40px] px-2.5 rounded-md z-[1] bg-[#242a35] border border-[#e8e8e82d] transition-all duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] hover:shadow-[rgba(0,0,0,0.25)_0px_54px_55px,rgba(0,0,0,0.12)_0px_-12px_30px,rgba(0,0,0,0.12)_0px_4px_6px,rgba(0,0,0,0.17)_0px_12px_13px,rgba(0,0,0,0.09)_0px_-3px_5px]">
         <div className="flex items-center gap-2.5">
-          <svg
-            viewBox="0 0 24 24"
-            width="20"
-            height="20"
-            stroke="currentColor"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-            <polyline points="14 2 14 8 20 8" />
-            <line x1="16" y1="13" x2="8" y2="13" />
-            <line x1="16" y1="17" x2="8" y2="17" />
-            <polyline points="10 9 9 9 8 9" />
-          </svg>
+          <FaFileDownload size={20} />
           {text}
         </div>
       </div>
