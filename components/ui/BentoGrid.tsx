@@ -225,7 +225,7 @@ export const BentoGridItem = ({
           {id === 1 && (
             <div className="absolute top-6 left-6 z-10">
               <AnimatedDownloadButton
-                text="Resume"
+                text="Get Resume"
                 onClick={() => {
                   // Add your resume download logic here
                   // For example:

@@ -20,7 +20,7 @@ export default function Home() {
   const navItems = [
     { name: "About", link: "#about", icon: <FaUser /> },
     { name: "Projects", link: "#projects", icon: <FaProjectDiagram /> },
-    { name: "Testimonials", link: "#testimonials", icon: <FaCommentDots /> },
+    { name: "Experience", link: "#experience", icon: <FaCommentDots /> },
     { name: "Contact", link: "#contact", icon: <FaEnvelope /> },
   ];
 
