@@ -161,6 +161,32 @@ export const projects = [
     ], // Placeholder Iconify icons
     link: "https://www.linenchest.com", // Replace with actual link if needed
   },
+  {
+    id: 7,
+    title: "Precision Flooring & Contracting - Home Service Platform",
+    des: "Developed a responsive web platform for a premier Ottawa-based home service company. Implemented dynamic service galleries, contact forms, and testimonial carousels. Built with NextJS for SEO optimization and Firebase for real-time data management and customer request handling.",
+    img: "/images/pcf.png",
+    iconLists: [
+      "logos:nextjs-icon",
+      "vscode-icons:file-type-firebase",
+      "logos:tailwindcss-icon",
+      "logos:typescript-icon",
+    ],
+    link: "https://pcf-ottawa.web.app",
+  },
+  {
+    id: 8,
+    title: "TransGlobal Canada - International Supply Chain Solutions",
+    des: "Engineered a corporate platform for a global trade company specializing in industrial sectors. Implemented interactive industry solution showcase, testimonial system, and responsive statistics displays. Leveraged NextJS for performance and Firebase for backend operations and client data management.",
+    img: "/images/trans.png",
+    iconLists: [
+      "logos:nextjs-icon",
+      "vscode-icons:file-type-firebase",
+      "logos:tailwindcss-icon",
+      "logos:typescript-icon",
+    ],
+    link: "https://www.transglobalcanada.com",
+  },
 ];
 
 export const testimonials = [
