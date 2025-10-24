@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next build",
+    "deploy": "npm run export && firebase deploy",
+    "deploy:hosting": "firebase deploy --only hosting"
   },
   "dependencies": {
     "@react-three/drei": "^9.114.0",
